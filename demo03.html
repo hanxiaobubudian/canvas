@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>线段</title>
+    <style>
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400">
+      your browser does not support html5 canvas
+    </canvas>
+  </body>
+
+  <script>
+    (function () {
+      canvasApp();
+    })();
+    // // 获取二维数据对象
+    // const ctx = canvas.getContext("2d");
+    // // 设置线宽
+    // ctx.lineWidth = 2;
+    // // ctx.strokeStyle = "red";
+    // //  起点
+    // ctx.moveTo(10, 10);
+    // ctx.lineTo(200, 10);
+    // ctx.lineTo(200, 100);
+    // ctx.lineTo(10, 100);
+    // ctx.lineTo(10, 10);
+    // ctx.fillStyle = "blue";
+    // // 进行填充
+    // ctx.fill();
+    // // 进行绘制线条
+    // ctx.stroke();
+    // // 闭合
+    // ctx.closePath();
+
+    // 绘制canvas
+    function canvasApp() {
+      // 获取画布元素
+      const canvas = document.getElementById("canvas");
+      // 检测浏览器是否支持canvas
+      if (!canvasSupport(canvas)) {
+        return;
+      }
+
+      // 获取一个2d环境
+      const ctx = canvas.getContext("2d");
+      drawScreen();
+
+      function drawScreen() {
+        // ctx.lineWidth = 2;
+        ctx.strokeStyle = "#f36";
+
+        // 清空内存中之前绘制的路径
+        // ctx.beginPath();
+        // ctx.moveTo(50, 10);
+        // ctx.lineTo(150, 10);
+        // ctx.lineTo(150, 200);
+        // // ctx.stroke()
+        // // ctx.closePath();
+
+        // // ctx.beginPath();
+        // ctx.lineTo(200, 200);
+        // ctx.lineTo(200, 150);
+        // ctx.stroke();
+        // ctx.closePath();
+
+        // ctx.fill();
+
+        // ctx.fillStyle= '#f36';
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(20, 10);
+        ctx.lineTo(20, 40);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.lineTo(30, 40);
+        ctx.lineTo(30, 10);
+        ctx.lineTo(40, 10);
+        ctx.lineTo(40, 40);
+        ctx.lineTo(50, 40);
+        ctx.lineTo(50, 10);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.fill();
+      }
+    }
+    // canvas兼容
+    function canvasSupport(e) {
+      return !!e.getContext;
+    }
+  </script>
+</html>

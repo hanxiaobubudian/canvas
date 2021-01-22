@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>线段</title>
+    <style>
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400">
+      your browser does not support html5 canvas
+    </canvas>
+  </body>
+
+  <script>
+    (function () {
+      canvasApp();
+    })();
+    // // 获取二维数据对象
+    // const ctx = canvas.getContext("2d");
+    // // 设置线宽
+    // ctx.lineWidth = 2;
+    // // ctx.strokeStyle = "red";
+    // //  起点
+    // ctx.moveTo(10, 10);
+    // ctx.lineTo(200, 10);
+    // ctx.lineTo(200, 100);
+    // ctx.lineTo(10, 100);
+    // ctx.lineTo(10, 10);
+    // ctx.fillStyle = "blue";
+    // // 进行填充
+    // ctx.fill();
+    // // 进行绘制线条
+    // ctx.stroke();
+    // // 闭合
+    // ctx.closePath();
+
+    // 绘制canvas
+    function canvasApp() {
+      // 获取画布元素
+      const canvas = document.getElementById("canvas");
+      // 检测浏览器是否支持canvas
+      if (!canvasSupport(canvas)) {
+        return;
+      }
+
+      // 获取一个2d环境
+      const ctx = canvas.getContext("2d");
+      drawScreen();
+
+      function drawScreen() {
+        ctx.lineWidth = 10;
+        // 线颜色
+        // ctx.strokeStyle = '#f36';
+        // 创建一个表示线性颜色渐变的canvasGradient对象
+        // 并设置该对象的作用区域就是该线段的区域
+        const canvasGadient = ctx.createLinearGradient(10, 10, 400, 10);
+        // 在offset为0的位置添加一个蓝色渐变
+        canvasGadient.addColorStop(0, "blue");
+        // 在offset为0.2的位置添加一个绿色渐变
+        canvasGadient.addColorStop(0.2, "green");
+        // 在offset为1的位置添加一个红色渐变
+        canvasGadient.addColorStop(1, "red");
+        ctx.strokeStyle = canvasGadient;
+
+        // 移动画笔到指定坐标点，该点是新的路径的起始点
+        ctx.moveTo(10, 10);
+        // 指定点，使用直线连接起始点和指定点
+        ctx.lineTo(400, 10);
+        // ctx.lineTo(100, 100);
+        // ctx.lineTo(10, 100);
+        // ctx.lineTo(10, 10);
+        ctx.stroke();
+
+      }
+    }
+    // canvas兼容
+    function canvasSupport(e) {
+      return !!e.getContext;
+    }
+  </script>
+</html>
